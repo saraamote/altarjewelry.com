@@ -1,0 +1,87 @@
+<div class="bespoke-cart">
+
+  <!-- Begin empty cart -->
+  {% if cart.item_count == 0 %}
+  <div class="row">
+    <div class="span12 expanded-message">
+      <br>
+      <br>
+      <h2 class="tc">Your cart is empty!</h2>
+    </div>
+  </div>
+  <!-- End empty cart -->
+
+  <!-- Begin cart -->
+  {% else %}
+  <div class="row">
+    <div class="span12">
+
+      <form action="/cart" method="post" id="cartform">
+
+
+            {% for item in cart.items %}
+
+            <a href="{{ item.url }}" class="bespoke-cart-product">
+
+              <img src="{{ item | img_url: 'small' }}"  alt="{{ item.title | escape }}" />
+
+            </a>
+
+            <p class="bespoke-cart-product-title">
+
+              {{ item.product.title }}
+
+              {% if item.product.variants.size > 1 %}
+
+              {{ item.variant.title }}
+
+              {% endif %}
+
+            </p>
+
+            <input type="text" size="4" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" onfocus="this.select();" class="tc item-quantity" />
+
+            <p class="price">{{ item.line_price | money }}</p>
+            <p>{{ line_item.quantity }}</p>
+
+            <p class="remove"><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="cart">Remove</a></p>
+
+
+            {% endfor %}
+
+            <!---->
+
+
+
+            <div class="summary">
+              <p class="price"><span class="total">{{ cart.total_price | money }}</span></p>
+            </div>
+
+        </table>
+
+        <!--
+        <div class="span6 inner-left inner-right">
+          <div class="checkout-buttons clearfix">
+            <label for="note">Add special instructions for your order...</label>
+            <textarea id="note" name="note" rows="10" cols="50">{{ cart.note }}</textarea>
+          </div>
+        </div>
+        -->
+
+        <div class="span6 cart-buttons inner-right inner-left">
+          <div class="buttons clearfix">
+            <input type="submit" id="checkout" class="btn" name="checkout" value="Check out" />
+            <input type="submit" id="update-cart" class="btn" name="update" value="Update" />
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  {% endif %}
+
+
+  <!-- End cart -->
+
+</div>
+

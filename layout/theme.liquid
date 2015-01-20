@@ -1,0 +1,134 @@
+<!doctype html>
+
+<html lang="en">
+
+  <head>
+
+    {{ 'altar.css' | asset_url | stylesheet_tag }}
+
+    <title>{{ shop.name }}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="canonical" href="{{ canonical_url }}" />
+
+    {{ 'jquery-2.1.1.min.js' | asset_url | script_tag }}
+
+    {{ content_for_header }}
+
+  </head>
+
+  <body>
+
+    <input type="checkbox" id="temporary-menu-checkbox">
+
+    <div class="temporary-menu">
+
+      {% for link in linklists.designers.links %}
+
+      <a href="{{ link.url }}" class="temporary-menu-designer">{{ link.title }}</a>
+
+      {% endfor %}
+
+      <a class="temporary-services">Services</a>
+
+      <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;%73%61%72%61%40%61%6C%74%61%72%6A%65%77%65%6C%72%79%2E%63%6F%6D?subject=Inquiry" class="temporary-contact">
+
+          Contact
+
+        </a>
+
+      <a class="temporary-about">About</a>
+
+<!--      <div class="temporary-selection">
+
+        {% for item in cart.items %}
+
+        <a href="{{ item.url }}" class="temporary-selection-product">
+
+          <img src="{{ item | img_url: 'compact ' }}"  alt="{{ item.title | escape }}" />
+
+        </a>
+
+        {% endfor %}
+
+      </div>
+
+      <div class="temporary-selection-summary">
+
+          <a class="temporary-selection-clear">Clear</a>
+
+          <a class="temporary-selection-price">{{ cart.total_price | money_with_currency }}</a>
+
+          <a class="temporary-selection-checkout">Checkout</a>
+
+        </div>
+    -->
+
+      {% include 'bespoke-cart' %}
+
+    </div>
+
+    {{ content_for_layout }}
+
+    <nav>
+
+      <ul>
+
+        {% for link in linklists.designers.links %}
+
+        <li>
+
+          <a href="{{ link.url }}"><img src="{{ link.object.image.src | collection_img_url: 'large' }}"></a>
+
+          <a href="{{ link.url }}">{{ link.title }}</a>
+
+        </li>
+
+        {% endfor %}
+
+      </ul>
+
+    </nav>
+
+    <form class="temporary-email-form">
+
+      <input type="email" placeholder="Your e-mail address">
+
+      <input type="submit" value="Subscribe">
+
+    </form>
+
+    <footer>
+
+      <i>Illustrations by <a href="#">Myriam Van Damme</a></i>
+
+      <i>Deep space photographs by <a href="http://hubblesite.org/">Hubble</a></i>
+
+    </footer>
+
+    <a href="/" class="temporary-logo">
+
+      <svg xmlns='http://www.w3.org/2000/svg' height='44' width='64'>
+
+        <title>Altar</title>
+
+        <polygon points='20,36 21,36 31,14 40,36 44,36 32.5,8.5'></polygon>
+
+      </svg>
+
+    </a>
+
+    <label for="temporary-menu-checkbox" class="temporary-menu-button">
+
+      <svg xmlns='http://www.w3.org/2000/svg' height='44' width='64'>
+
+        <polygon fill='rgb(239,239,239)' points='28,20 29,19 32,22 35,19 36,20 32,24'></polygon>
+
+      </svg>
+
+    </label>
+
+  </body>
+
+</html>

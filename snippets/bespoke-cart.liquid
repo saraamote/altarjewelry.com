@@ -1,0 +1,23 @@
+      <div class="temporary-selection">
+
+        {% for item in cart.items %}
+
+        <a href="{{ item.url }}" class="temporary-selection-product">
+
+          <img src="{{ item | img_url: 'compact ' }}"  alt="{{ item.title | escape }}" />
+
+        </a>
+
+        {% endfor %}
+
+      </div>
+
+      <div class="temporary-selection-summary">
+
+          <a class="temporary-selection-clear">Clear</a>
+
+          <a class="temporary-selection-price">{{ cart.total_price | money_with_currency }}</a>
+
+          <a class="temporary-selection-checkout">Checkout</a>
+
+        </div>
